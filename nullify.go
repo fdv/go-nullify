@@ -105,16 +105,7 @@ func (nt *NullTime) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON for NullTime
 func (nt *NullTime) UnmarshalJSON(b []byte) error {
-	s := string(b)
-	// s = Stripchars(s, "\"")
-
-	x, err := time.Parse(time.RFC3339, s)
-	if err != nil {
-		nt.Valid = false
-		return err
-	}
-
-	nt.Time = x
-	nt.Valid = true
-	return nil
+	err := json.Unmarshal(b, &nt.Time)
+	nt.Valid = (err == nil)
+	return err
 }
