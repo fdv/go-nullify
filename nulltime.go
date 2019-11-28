@@ -10,13 +10,13 @@ import (
 // Scan implements the Scanner interface.
 // The value type must be time.Time or string / []byte (formatted time-string),
 // otherwise Scan fails.
-func (n *NullTime) Scan(value interface{}) error {
+func (nt *NullTime) Scan(value interface{}) error {
 	if value == nil {
-		n.Time, n.Valid = time.Time{}, false
+		nt.Time, nt.Valid = time.Time{}, false
 		return nil
 	}
-	n.Valid = true
-	return convertAssign(&n.Time, value)
+	nt.Valid = true
+	return err
 }
 
 // Value implements the driver Valuer interface.
