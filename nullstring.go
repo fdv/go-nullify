@@ -1,27 +1,8 @@
 package nullify
 
 import (
-	"database/sql/driver"
 	"encoding/json"
 )
-
-// Scan implements the Scanner interface.
-func (ns *NullString) Scan(value interface{}) error {
-	if value == nil {
-		ns.String, ns.Valid = "", false
-		return nil
-	}
-	ns.Valid = true
-	return nil
-}
-
-// Value implements the driver Valuer interface.
-func (ns NullString) Value() (driver.Value, error) {
-	if !ns.Valid {
-		return nil, nil
-	}
-	return ns.String, nil
-}
 
 // MarshalJSON for NullString
 func (ns NullString) MarshalJSON() ([]byte, error) {
