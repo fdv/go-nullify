@@ -12,7 +12,7 @@ import (
 // otherwise Scan fails.
 func (nt *NullTime) Scan(value interface{}) (err error) {
 	if value == nil {
-		nt = Nulltime{}
+		nt = &NullTime{}
 		return
 	}
 
