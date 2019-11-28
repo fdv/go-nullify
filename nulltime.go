@@ -16,7 +16,7 @@ func (nt *NullTime) Scan(value interface{}) error {
 		return nil
 	}
 	nt.Valid = true
-	return err
+	return nil
 }
 
 // Value implements the driver Valuer interface.
